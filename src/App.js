@@ -10,12 +10,25 @@ class App extends React.Component {
     };
   }
 
+  componentDidMount() {
+    const storeItems = localStorage.getItem('toDoItem');
+    if (storeItems) {
+      this.setState({
+        itemToDo: JSON.parse(storeItems)
+      });
+    }
+  }
+
+  updateLocalStorage() {
+    localStorage.setItem('toDoItem', JSON.stringify(this.state.itemToDo));
+  }
 
   deleteItem(index) {
     this.state.itemToDo.splice(index, 1);
     this.setState({
       itemToDo: this.state.itemToDo
     });
+    this.updateLocalStorage();
   };
 
   addItem() {
@@ -28,14 +41,16 @@ class App extends React.Component {
     this.setState({
       newItem: "",
       itemToDo: itemState
-    })
+    });
+    this.updateLocalStorage();
   };
 
   toggleCheckbox(index) {
     const itemArray = this.state.itemToDo;
     itemArray[index].checked = !itemArray[index].checked; 
 
-    this.setState({itemToDo: itemArray})
+    this.setState({itemToDo: itemArray});
+    this.updateLocalStorage();
   }
 
 
