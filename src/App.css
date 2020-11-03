@@ -1,6 +1,6 @@
 #todo-app-container {
   background-color: #FFF3E1;
-  max-width: 20%;
+  max-width: 35%;
   padding: 20px;
   margin: auto;
 }
@@ -44,7 +44,7 @@ button {
 
 .item {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .item .item-list {
